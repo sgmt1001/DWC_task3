@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>User info</h1>
+         <div class="error-message">
+        <% if @user.errors.any? %>
+        <%= @user.errors.count %>error has occurred
+          <ul>
+            <li><% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <%= form_with model:@user, local:true do |f| %>
+
+        <div class="form">Name</div>
+        <%= f.text_field :name %>
+
+        <div class="form">Image</div>
+        <%= f.attachment_field :profile_image %>
+
+        <div class="form">Introduction</div>
+        <%= f.text_area :introduction %>
+
+        <div class="submit">
+        <%= f.submit 'Update User' %>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

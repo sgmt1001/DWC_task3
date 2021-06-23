@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      <img class="attachment user profile_image fallback" src="/assets/user-regular.svg" width="100" height="100">
+      <table>
+        <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= current_user.introduction %></th>
+        </tr>
+      </table>
+      
+      <img class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_275" href="/users/edit" src="/assets/user-cog-solid" height="30"></a>
+      <%= link_to "edit",edit_user_path(current_user),class:"btn btn-outline-secondary btn-block fas fa-user-cog edit_user" %>
+      
+      <h2>New book</h2>
+      <div class="error-message">
+        <% if @book.errors.any? %>
+        <%= @book.errors.count %>error has occurred
+          <ul>
+            <li><% @book.errors.full_messages.each do |message| %>
+            <%= message %>
+            </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <%= form_with model:@book, local:true do |f| %>
+      
+        <div class="form">Title</div>
+        <%= f.text_field :title %>
+      
+        <div class="form">Opnion</div>
+        <%= f.text_area :body %>
+      
+        <div class="submit">
+        <%= f.submit 'Create Book' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <h2>Books</h2>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opnion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @books.each do |book| %>
+            <tr>
+              <td></td>
+               <td><%= @book.title %></td>
+              <td><%= @books.body %></td>
+            </tr>
+              <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
